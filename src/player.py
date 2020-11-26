@@ -56,19 +56,19 @@ class Player (Sprite):
 
 
     def keydown (self, key):
-        if key == pygame.K_LEFT:
+        if key == ord('a'):
             if self.flip > 0:
                 self.flip *= -1
 
             self.speedx = -PLAYER_RUNNING_SPEED
 
-        if key == pygame.K_RIGHT:
+        if key == ord('d'):
             if self.flip < 0:
                 self.flip *= -1
 
             self.speedx = PLAYER_RUNNING_SPEED
 
-        if key == pygame.K_UP:
+        if key == ord('w'):
             if self.jumps == 0:
                 self.speedy = PLAYER_JUMPING_SPEED
                 self.state = "jumping"
@@ -81,11 +81,11 @@ class Player (Sprite):
             self.jumps += 1
 
     def keyup (self, key):
-        if key == pygame.K_LEFT:
+        if key == ord('a'):
             self.speedx = 0
             self.state = "standing"
 
-        if key == pygame.K_RIGHT:
+        if key == ord('d'):
             self.speedx = 0
             self.state = "standing"
 
