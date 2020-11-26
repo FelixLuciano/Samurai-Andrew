@@ -20,3 +20,9 @@ A Python game made with Pygame!
 4. Press any button to start the game.
 5. Slice flying fruits with your mouse and dont fall in the void.
 6. **Have fun!**
+
+## Demo
+
+Watch this demo video on youtube by clicking the following link:
+
+[youtu.be/YfFVtREranc](https://youtu.be/YfFVtREranc)
