@@ -23,7 +23,7 @@ ninja_diego = Player(diego_assets)
 # Jogador Principal
 player = samurai_andrew
 player.rect.x = 91
-player.rect.bottom = 70
+player.rect.bottom = 0
 
 # Assets das frutas
 from characters import melancia as melancia_assests

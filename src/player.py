@@ -131,10 +131,8 @@ class Player (Sprite):
         self.update_frame()
 
         # Manda o jogador pra cima quando cair do mapa
-        if self.rect.top > 150:
-            self.rect.bottom = 0
-            self.speedy = 0
-
+        if self.rect.top > SCREEN_HEIGHT * 1.2:
+            self.kill()
     # Atualização do sprite do jogador
     @property
     def image (self):

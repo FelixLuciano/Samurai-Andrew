@@ -19,6 +19,7 @@ game_clock = time.Clock()
 # Importação das fases do jogo
 from start_screen import start_screen
 from game_screen import game_screen
+from over_screen import over_screen
 
 # Os elementos do jogo são desenhados numa surface em escala menor e ampliados para a resolução do screen
 def renderer ():
@@ -42,6 +43,10 @@ while not state == LEAVE_GAME:
     # Tela de jogo
     elif state == GAME_SCREEN:
         state = game_screen(picture, renderer)
+
+    # Tela de jogo
+    elif state == OVER_SCREEN:
+        state = over_screen(picture, renderer)
 
     # Saindo od jogo
     else:

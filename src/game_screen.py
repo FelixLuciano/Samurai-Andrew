@@ -85,6 +85,16 @@ def game_screen(screen, render):
                 fruta.kill()
                 score += 10
 
+        if not players:
+            lives -= 1
+
+            if lives == 0:
+                state = OVER_SCREEN
+            else:
+                players.add(player)
+                player.rect.x = 91
+                player.rect.bottom = 0
+
         # Atualiza os Sprites
         frutas.update()
         players.update()
@@ -99,7 +109,8 @@ def game_screen(screen, render):
         score_surface = font.render(str(score), True, WHITE)
 
         screen.blit(score_surface, SCREEN_ORIGIN)
-
+        live_surface = font.render(str(lives), True, WHITE)
+        screen.blit(live_surface, (300,150))
         cursor.draw(screen)
         
         render()
