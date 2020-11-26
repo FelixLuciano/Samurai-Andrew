@@ -24,8 +24,8 @@ class Fruta (Sprite):
         # self
 
         
-        self.speedx = random.randint(-1,2)
-        self.speedy = random.randint(2,3)
+        self.speedx = random.randint(FRUIT_MIN_SPEEDX,FRUIT_MAX_SPEEDX)
+        self.speedy = random.randint(FRUIT_MIN_SPEEDY,FRUIT_MAX_SPEEDY)
         
 
         self.last_frame = 0

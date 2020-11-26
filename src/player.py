@@ -47,7 +47,7 @@ class Player (Sprite):
 
         return sound
 
-    def eventHanddler (self, event):
+    def event_handdler (self, event):
         if event.type == pygame.KEYDOWN:
             self.keydown(event.key)
 
