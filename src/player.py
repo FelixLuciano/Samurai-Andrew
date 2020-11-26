@@ -76,7 +76,7 @@ class Player (Sprite):
             elif self.jumps <= PLAYER_DOUBLE_JUMPING_LIMIT and self.speedx:
                 self.speedy = PLAYER_DOUBLE_JUMPING_SPEED
                 self.speedx = PLAYER_DASHING_SPEED * self.flip
-                self.sound("jump").play()
+                self.sound("special").play()
 
             self.jumps += 1
 

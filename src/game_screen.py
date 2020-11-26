@@ -1,12 +1,25 @@
 from os import path
+from os.path import join, dirname
 import pygame
 from pygame.time import delay
 
+
 from config import *
 from game import *
+import scene
+import random
 
 
 def game_screen(screen, render):
+    cursor_dir = join(dirname(__file__), "characters", "coronga", "images", "cursor", "0.png")
+    #cursor_dir = pygame.transform.scale(cursor_dir,(1,1))
+    cursor = pygame.image.load(cursor_dir).convert_alpha()
+    cursor_rect = cursor.get_rect()
+    # cursor = pygame.Rect((0, 0),(1,1))
+    # cursor = (0, 0)
+    cursor_state = False
+
+
     # Screen Assets
     background_path  = path.join(IMAGES_DIR, "scene", "background.png")
     background_asset = pygame.image.load(background_path).convert()
@@ -26,8 +39,9 @@ def game_screen(screen, render):
     pygame.mixer.music.set_volume(GAME_VOLUME)
 
     # Sprites
+    all_frutas = pygame.sprite.Group()
     all_sprites = pygame.sprite.Group()
-
+    
 
     # Play Screen Sounds
     pygame.mixer.music.play(loops=-1)
@@ -43,7 +57,7 @@ def game_screen(screen, render):
 
     all_sprites.add(player)
     player.sound("letsgo").play()
-
+    
     
     state = GAME_SCREEN
 
@@ -54,136 +68,58 @@ def game_screen(screen, render):
             if event.type == pygame.QUIT:
                 state = LEAVE_GAME
 
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:  
+                    cursor_state = True
+                    cursor_rect.centerx = pygame.mouse.get_pos()[0] * PICTURE_WIDTH / SCREEN_WIDTH
+                    cursor_rect.centery = pygame.mouse.get_pos()[1] * PICTURE_HEIGHT / SCREEN_HEIGHT
+                
+            elif event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:            
+                    cursor_state = False
+
+            elif event.type == pygame.MOUSEMOTION:
+                if cursor_state:
+                    cursor_rect.centerx = pygame.mouse.get_pos()[0] * PICTURE_WIDTH / SCREEN_WIDTH
+                    cursor_rect.centery = pygame.mouse.get_pos()[1] * PICTURE_HEIGHT / SCREEN_HEIGHT
+                    
             # Eventos do jogador
             player.eventHanddler(event)
 
         screen.blit(ingame_asset, SCREEN_ORIGIN)
-        all_sprites.draw(screen)
+        
 
+        while len(all_frutas) <= 15:
+            numb = random.randint(0,2)
+            if numb == 0:
+                all_frutas.add(Fruta(maca_assests))
+            if numb == 1:
+                all_frutas.add(Fruta(banana_assests))
+            if numb == 2:
+                all_frutas.add(Fruta(melancia_assests))
+                
+        # print(cursor)
+        for fruta in all_frutas:
+            if fruta.rect.collidepoint(cursor_rect.centerx, cursor_rect.centery):
+                print("COLIDIU")
+                fruta.kill()
+        
+        # hit = pygame.sprite.spritecollide(cursor, all_frutas, True)
+        # if hit:
+        #     print("COLIDIU")
+    
+        # print(cursor_state, cursor.center)
+
+        screen.blit(cursor, (cursor_rect.x, cursor_rect.y))
+
+        all_frutas.update()
         all_sprites.update()
-
+        all_sprites.draw(screen)
+        all_frutas.draw(screen)
+        
         render()
 
-    return STATE
+    return state
     
     
-    # all_melancia = pygame.sprite.Group()
-    # all_atk = pygame.sprite.Group()
-    # # all_ground = pygame.sprite.Group()
-    # groups = {}
-    # groups["all_sprites"] = all_sprites
-    # groups["all_melancia"] = all_melancia
-    # groups["all_atk"] = all_atk
-    # # groups["all_ground"] = all_ground
-    
-
-
-
-    # for i in range(28):
-    #     meteor = Meteor(imagem)
-    #     all_sprites.add(meteor)
-    #     all_melancia.add(meteor)
-    # DONE = 0
-    # PLAYING = 1
-    # EXPLODING = 2
-    # state = PLAYING
-
-    # score = 0
-    # lives =  3
-    #C:\Users\Cliquet\Documents\Desoft\Samurai_Andrew\img\Masterizados
-
-
-            
-        # Verifica se houve colisão entre tiro e meteoro
-        # hits = pygame.sprite.groupcollide(all_melancia, all_atk, True, True)
-        # for meteor in hits: # As chaves são os elementos do primeiro grupo (meteoros) que colidiram com alguma bala
-        #     # O meteoro e destruido e precisa ser recriado
-        #     #assets["destroy_sound"].play()
-            
-        #     #imagem[hit].play()
-        #     m = Meteor(imagem)
-        #     all_sprites.add(m)
-        #     all_melancia.add(m)
-
-        #     # No lugar do meteoro antigo, adicionar uma explosão.
-        #     explosao = Explosion(meteor.rect.center, imagem)
-        #     all_sprites.add(explosao)
-
-        #     # Ganhou pontos!
-        #     score += 100
-
-        # # Verifica se houve colisão entre nave e meteoro
-        # hits = pygame.sprite.spritecollide(player, all_melancia, True)
-        # if len(hits) > 0:
-        #     # Toca o som da colisão
-        #     hit = pygame.mixer.Sound("img/Masterizados/hit00.wav")
-        #     hit.play()
-        #     player.kill()
-        #     lives -= 1
-        #     explosao = Explosion(player.rect.center, imagem)
-        #     all_sprites.add(explosao)
-        #     state = EXPLODING
-        #     keys_down = {}
-        #     explosion_tick = pygame.time.get_ticks()
-        #     explosion_duration = explosao.frame_ticks * len(explosao.cut_anim) + 400
-
-        # if player.rect.top > HEIGHT:
-        #     hit = pygame.mixer.Sound("img/Masterizados/hit02.wav")
-        #     hit.play()
-        #     player.kill()
-        #     lives -= 1
-        #     player = Jogador(groups, imagem, ground_rects)
-        #     all_sprites.add(player)
-        #     if lives == 0:
-        #         state = DONE
-
-        # elif state == EXPLODING:
-        #     now = pygame.time.get_ticks()
-        #     if now - explosion_tick > explosion_duration:
-        #         if lives == 0:
-        #             state = DONE
-        #         else:
-        #             state = PLAYING
-        #             player = Jogador(groups, imagem, ground_rects)
-        #             all_sprites.add(player)
-
-
-
-
-        # Se o meteoro passar do final da tela, volta para cima
-
-        #FUNDO DA TEKA
-        # screen.fill(BLACK)
-        # screen.blit(imagem["b_ground"],(0,0))
-        # #screen.blit(imagem["fundo"] ,(200,100))
-        # screen.blit(imagem["Casas"],(85,500))
-
-        # #ADD SPRITES
-        # #screen.blit(imagem["pilar"],(200,250))
-
-        # #PONTOS
-        # text_surface = imagem["score_font"].render("{:08d}".format(score), True, (255, 255, 0))
-        # text_rect = text_surface.get_rect()
-        # text_rect.midtop = (100,  110)
-        # screen.blit(text_surface, text_rect)
-
-        # #VIDA
-        # text_surface = imagem["score_font"].render(chr(9829) * lives, True, (110, 30, 120))
-        # text_rect = text_surface.get_rect()
-        # text_rect.midtop = (100, 700)
-        # screen.blit(text_surface, text_rect)
-        
-# def shoot(self):
-#         # Verifica se pode atirar
-#         now = pygame.time.get_ticks()
-#         # Verifica quantos ticks se passaram desde o último tiro.
-#         elapsed_ticks = now - self.last_shot
-
-#         # Se já pode atirar novamente...
-#         if elapsed_ticks > self.shoot_ticks:
-#             # Marca o tick da nova imagem.
-#             self.last_shot = now
-#             # A nova bala vai ser criada logo acima e no centro horizontal da nave
-#             new_atk = Atk(self.imagem, self.rect.top, self.rect.centerx)
-#             self.groups['all_sprites'].add(new_atk)
-#             self.groups['all_atk'].add(new_atk)
+  
