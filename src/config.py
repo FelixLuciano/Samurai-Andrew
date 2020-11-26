@@ -29,10 +29,7 @@ PLAYER_FRAME_DELAY = 100
 PLAYER_VOLUME = 0.05
 
 # Frutas
-FRUTAS_WIDTH = 0
-FRUTAS_HEIGHT = 0
-
-# Frutas
+FRUITS_MAX = 5
 FRUIT_MIN_SPEEDX = -1
 FRUIT_MAX_SPEEDX =  1
 FRUIT_MIN_SPEEDY =  2
@@ -45,10 +42,10 @@ GRAVITY = 1
 ASSETS_DIR = path.join(path.dirname(__file__), "assets")
 IMAGES_DIR = path.join(ASSETS_DIR, "images")
 SOUNDS_DIR = path.join(ASSETS_DIR, "sounds")
+FONTS_DIR = path.join(ASSETS_DIR, "fonts")
 
+# Fonst
+FONT_SIZE = 8
 
-#Player states
-
-STAND_BY = 0
-JUMPING = 1
-RUNNING = 2
+# Colors
+WHITE = (255, 255, 255)

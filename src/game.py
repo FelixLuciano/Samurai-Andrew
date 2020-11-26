@@ -27,13 +27,10 @@ player.rect.bottom = 70
 
 # Assets das frutas
 from characters import melancia as melancia_assests
-melancia_cortadas = Fruta(melancia_assests)
-
 from characters import melancia as banana_assests
-banana_cortadas = Fruta(banana_assests)
-
 from characters import melancia as maca_assests
-maca_cortadas = Fruta(maca_assests)
+
+frutas_assets = (melancia_assests, banana_assests, maca_assests)
 
 # Cursor
 cursor_asset = join(ASSETS_DIR, "images", "game", "cursor.png")
