@@ -20,7 +20,7 @@ def start_screen (screen, render):
     samurai_anderu.set_volume(GAME_VOLUME)
 
     # Fonts assets
-    font_dir = join(FONTS_DIR, 'PressStart2P.ttf')
+    font_dir = join(FONTS_DIR, "PressStart2P.ttf")
     font = pygame.font.Font(font_dir, FONT_SIZE)
 
     # Screen Sounds

@@ -41,9 +41,9 @@ GRAVITY = 1
 
 # Direcotires
 ASSETS_DIR = path.join(path.dirname(__file__), "assets")
-IMAGES_DIR = path.join(ASSETS_DIR, "images")
-SOUNDS_DIR = path.join(ASSETS_DIR, "sounds")
-FONTS_DIR = path.join(ASSETS_DIR, "fonts")
+IMAGES_DIR = path.join(ASSETS_DIR, "game", "images")
+SOUNDS_DIR = path.join(ASSETS_DIR, "game", "sounds")
+FONTS_DIR = path.join(ASSETS_DIR, "game", "fonts")
 
 # Fonst
 FONT_SIZE = 8
