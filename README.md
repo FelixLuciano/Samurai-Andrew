@@ -8,7 +8,6 @@
 A Python game made with <b>Pygame</b>!
 </p>
 
-
 ## How to Play
 
 1. Clone this repository with the following command:
@@ -27,11 +26,9 @@ A Python game made with <b>Pygame</b>!
 5. Slice flying fruits with your mouse and dont fall in the void.
 6. **Have fun!**
 
-## Demo
+## Gameplay
 
-Watch this demo video on youtube by clicking the following link:
-
-[youtu.be/YfFVtREranc](https://youtu.be/YfFVtREranc)
+[![Demo](assets/images/demo.jpg)](https://youtu.be/YfFVtREranc)
 
 ## License
 This game is [MIT Licensed](LICENSE)!
