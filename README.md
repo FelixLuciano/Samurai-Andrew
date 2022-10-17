@@ -1,6 +1,12 @@
-![logo](src/assets/images/github/logo.png)
+[Andrew Kurauchi, Phd](https://github.com/toshikurauchi). Design de Software. [Insper](https://github.com/Insper), 2020.
 
-A Python game made with Pygame!
+<h1 align="center">
+<img src="src/assets/images/github/logo.png" alt="Samurai Andrew">
+</h1>
+
+<p align="center">
+A Python game made with <b>Pygame</b>!
+</p>
 
 
 ## How to Play
@@ -26,3 +32,6 @@ A Python game made with Pygame!
 Watch this demo video on youtube by clicking the following link:
 
 [youtu.be/YfFVtREranc](https://youtu.be/YfFVtREranc)
+
+## License
+This game is [MIT Licensed](LICENSE)!
